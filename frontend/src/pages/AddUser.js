@@ -1,7 +1,8 @@
 import React, {useState,setState} from 'react';
 import axios from 'axios';
+import { Card } from '@mui/material';
 //import './style.css'
-function RegistrationForm() {
+function AddUser() {
 
     const [firstName, setFirstName] = useState(null);
     const [lastName, setLastName] = useState(null);
@@ -37,7 +38,7 @@ function RegistrationForm() {
     }
 
     const handleBrowse = () => {
-
+        
     }
 
     return(
@@ -67,8 +68,7 @@ function RegistrationForm() {
                 <button onClick={()=>handleSubmit()} type="submit" class="btn">Browse</button>
             </div>
         </div>
-       
     )       
 }
 
-export default RegistrationForm
+export default AddUser
