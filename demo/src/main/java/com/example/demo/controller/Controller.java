@@ -16,21 +16,22 @@ import com.example.demo.Employees;
 
 
 @RestController
-@RequestMapping("/home")
+@RequestMapping("/employees")
 @CrossOrigin(origins = "*")
 public class Controller {
 	private final TestRepository repo;
+	
 	public Controller(TestRepository repo) {
 		this.repo = repo;
 	}
 	
-	@GetMapping("/employees")
+	@GetMapping("/all")
     public List<Employees> listAll() {
         return repo.findAll();
     }
 	
 	@PostMapping
-	public ResponseEntity confirmBooking(@RequestBody Employees employee) throws URISyntaxException {//
+	public ResponseEntity<?> createEmployee(@RequestBody Employees employee) throws URISyntaxException {//
 		try {
 			Employees _employee = repo
 					.save(new Employees(employee.getFirstName(), employee.getLastName(), employee.getPhoneNumber(),employee.getEmail()));
