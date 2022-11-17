@@ -56,7 +56,7 @@ const EmployeesList = (props) => {
   const openEmployee = (rowIndex) => {
     const id = employeesRef.current[rowIndex].id;
 
-    props.history.push("/tutorials/" + id);
+    props.history.push("/employees/" + id);
   };
 
   const deleteEmployee = (rowIndex) => {
@@ -64,7 +64,7 @@ const EmployeesList = (props) => {
 
     EmployeeDataService.remove(id)
       .then((response) => {
-        props.history.push("/tutorials");
+        props.history.push("/employees");
 
         let newTutorials = [...employeesRef.current];
         newTutorials.splice(rowIndex, 1);
@@ -84,15 +84,15 @@ const EmployeesList = (props) => {
       },
       {
         Header: "First name",
-        accessor: "fname",
+        accessor: "firstName",
       },
       {
         Header: "Last name",
-        accessor: "lname",
+        accessor: "lastName",
       },
       {
         Header: "Phone number",
-        accessor: "pnumber",
+        accessor: "phoneNumber",
       },
       {
         Header: "Actions",
@@ -129,26 +129,8 @@ const EmployeesList = (props) => {
 
   return (
     <div className="list row">
-      <div className="col-md-8">
-        <div className="input-group mb-3">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Search by title"
-            value={searchEmail}
-            onChange={onChangeSearchTitle}
-          />
-          <div className="input-group-append">
-            <button
-              className="btn btn-outline-secondary"
-              type="button"
-              onClick={findByEmail}
-            >
-              Search
-            </button>
-          </div>
-        </div>
-      </div>
+      
+      
       <div className="col-md-12 list">
         <table
           className="table table-striped table-bordered"
@@ -182,13 +164,32 @@ const EmployeesList = (props) => {
         </table>
       </div>
 
-      <div className="col-md-8">
-        <button className="btn btn-sm btn-danger" onClick={removeAllEmployees}>
-          Remove All
-        </button>
-      </div>
     </div>
   );
 };
 
 export default EmployeesList;
+
+
+/*
+<div className="col-md-8">
+        <div className="input-group mb-3">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search by email"
+            defaultValue={searchEmail}
+            onChange={onChangeSearchTitle}
+          />
+          <div className="input-group-append">
+            <button
+              className="btn btn-outline-secondary"
+              type="button"
+              onClick={findByEmail}
+            >
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+*/

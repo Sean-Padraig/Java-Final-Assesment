@@ -28,17 +28,17 @@ public class Controller {
 		this.repo = repo;
 	}
 	
+    @GetMapping("/all")
+    public List<Employees> listAll() {
+        return repo.findAll();
+    }
+
     @GetMapping("/{id}")
     public Employees getClient(@PathVariable int id) {
         return repo.findById(id).orElseThrow(RuntimeException::new);
     }
 	
-	@GetMapping("/all")
-    public List<Employees> listAll() {
-        return repo.findAll();
-    }
-	
-	@PostMapping
+	@PostMapping("")
 	public ResponseEntity<?> createEmployee(@RequestBody Employees employee) throws URISyntaxException {//
 		try {
 			Employees _employee = repo

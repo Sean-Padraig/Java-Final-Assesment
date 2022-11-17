@@ -19,14 +19,15 @@ const AddEmployee = () => {
 
   const saveEmployeeEntry = () => {
     var data = {
-      title: employeeEntry.firstName,
-      description: employeeEntry.lastName
+      firstName: employeeEntry.firstName,
+      lastName: employeeEntry.lastName,
+      email: employeeEntry.email,
+      phoneNumber: employeeEntry.phoneNumber
     };
 
     TutorialDataService.create(data)
       .then(response => {
         setEmployeeEntry({
-          id: response.data.id,
           firstName: response.data.firstName,
           lastName: response.data.lastName,
           email: response.data.email,
@@ -61,11 +62,10 @@ const AddEmployee = () => {
             <input
               type="text"
               className="form-control"
-              id="title"
-              required
+              id="first-name"
+              name="firstName"
               value={employeeEntry.firstName}
               onChange={handleInputChange}
-              name="title"
             />
           </div>
 
@@ -74,11 +74,10 @@ const AddEmployee = () => {
             <input
               type="text"
               className="form-control"
-              id="description"
-              required
+              id="last-name"
+              name="lastName"
               value={employeeEntry.lastName}
               onChange={handleInputChange}
-              name="description"
             />
           </div>
 
@@ -87,11 +86,10 @@ const AddEmployee = () => {
             <input
               type="text"
               className="form-control"
-              id="description"
-              required
-              value={employeeEntry.email}
+              id="email"
+              name="email"
               onChange={handleInputChange}
-              name="description"
+              value={employeeEntry.email}
             />
           </div>
 
@@ -100,11 +98,11 @@ const AddEmployee = () => {
             <input
               type="text"
               className="form-control"
-              id="description"
+              id="phone-number"
+              name="phoneNumber"
               required
-              value={employeeEntry.phoneNumber}
               onChange={handleInputChange}
-              name="description"
+              value={employeeEntry.phoneNumber}
             />
           </div>
 

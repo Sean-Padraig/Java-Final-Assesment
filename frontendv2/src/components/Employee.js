@@ -9,6 +9,9 @@ const Employee = props => {
     email: "",
     phoneNumber: "",
   };
+  
+  
+
   const [currentEmployee, setCurrentEmployee] = useState(initialEmployeeState);
   const [message, setMessage] = useState("");
 
@@ -32,30 +35,12 @@ const Employee = props => {
     setCurrentEmployee({ ...currentEmployee, [name]: value });
   };
 
-  const updatePublished = status => {
-    var data = {
-      id: currentEmployee.id,
-      title: currentEmployee.title,
-      description: currentEmployee.description,
-      published: status
-    };
-
-    EmployeeDataService.update(currentEmployee.id, data)
-      .then(response => {
-        setCurrentEmployee({ ...currentEmployee, published: status });
-        console.log(response.data);
-        setMessage("The status was updated successfully!");
-      })
-      .catch(e => {
-        console.log(e);
-      });
-  };
-
   const updateEmployee = () => {
     EmployeeDataService.update(currentEmployee.id, currentEmployee)
       .then(response => {
         console.log(response.data);
-        setMessage("The tutorial was updated successfully!");
+        setMessage("The Employee was updated successfully");
+        props.history.push("/employees");
       })
       .catch(e => {
         console.log(e);
@@ -66,7 +51,7 @@ const Employee = props => {
     EmployeeDataService.remove(currentEmployee.id)
       .then(response => {
         console.log(response.data);
-        props.history.push("/tutorials");
+        props.history.push("/employees");
       })
       .catch(e => {
         console.log(e);
@@ -79,14 +64,25 @@ const Employee = props => {
         <div className="edit-form">
           <h4>Employee</h4>
           <form>
+          <div className="form-group">
+              <label htmlFor="description">Email</label>
+              <input
+                type="text"
+                className="form-control"
+                id="email"
+                name="email"
+                defaultValue={currentEmployee.email}
+                onChange={handleInputChange}
+              />
+            </div>
             <div className="form-group">
               <label htmlFor="title">First name</label>
               <input
                 type="text"
                 className="form-control"
                 id="first-name"
-                name="first-name"
-                value={currentEmployee.firstName}
+                name="firstName"
+                defaultValue={currentEmployee.firstName}
                 onChange={handleInputChange}
               />
             </div>
@@ -96,30 +92,20 @@ const Employee = props => {
                 type="text"
                 className="form-control"
                 id="last-name"
-                name="last-name"
-                value={currentEmployee.lastName}
+                name="lastName"
+                defaultValue={currentEmployee.lastName}
                 onChange={handleInputChange}
               />
             </div>
-            <div className="form-group">
-              <label htmlFor="description">Email</label>
-              <input
-                type="text"
-                className="form-control"
-                id="email"
-                name="email"
-                value={currentEmployee.email}
-                onChange={handleInputChange}
-              />
-            </div>
+            
             <div className="form-group">
               <label htmlFor="description">Phone number</label>
               <input
                 type="text"
                 className="form-control"
                 id="phone-number"
-                name="phone-number"
-                value={currentEmployee.phoneNumber}
+                name="phoneNumber"
+                defaultValue={currentEmployee.phoneNumber}
                 onChange={handleInputChange}
               />
             </div>
