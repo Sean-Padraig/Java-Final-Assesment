@@ -13,38 +13,8 @@ const EmployeesList = (props) => {
     retrieveEmployees();
   }, []);
 
-  const onChangeSearchTitle = (e) => {
-    const searchTitle = e.target.value;
-    setSearchEmail(searchTitle);
-  };
-
   const retrieveEmployees = () => {
     EmployeeDataService.getAll()
-      .then((response) => {
-        setEmployees(response.data);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
-
-  const refreshList = () => {
-    retrieveEmployees();
-  };
-
-  const removeAllEmployees = () => {
-    EmployeeDataService.removeAll()
-      .then((response) => {
-        console.log(response.data);
-        refreshList();
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
-
-  const findByEmail = () => {
-    EmployeeDataService.findByEmail(searchEmail)
       .then((response) => {
         setEmployees(response.data);
       })
@@ -66,10 +36,10 @@ const EmployeesList = (props) => {
       .then((response) => {
         props.history.push("/employees");
 
-        let newTutorials = [...employeesRef.current];
-        newTutorials.splice(rowIndex, 1);
+        let newEmployees = [...employeesRef.current];
+        newEmployees.splice(rowIndex, 1);
 
-        setEmployees(newTutorials);
+        setEmployees(newEmployees);
       })
       .catch((e) => {
         console.log(e);
