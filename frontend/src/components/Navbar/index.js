@@ -1,54 +1,43 @@
 import React from "react";
 import {
-    Nav,
-    NavLogo,
-    NavLink,
-    Bars,
-    NavMenu,
-    NavBtn,
-    NavBtnLink,
+  Nav,
+  NavLogo,
+  NavLink,
+  Bars,
+  NavMenu,
+  NavBtn,
+  NavBtnLink,
 } from "./NavbarElements";
 
 const Navbar = () => {
-    return (
-        <>
-           <Nav>
-            <NavLogo to="/">
-                Logo
-            </NavLogo>
-            <Bars />
+  return (
+    <>
+      <Nav>
+        <NavLogo to="/home">Logo</NavLogo>
+        <Bars />
 
-            <NavMenu>
-                <NavLink 
-                  to="/"
-                  activeStyle={{ color:'black' }}
-                >
-                    Home
-                </NavLink>
-                <NavLink 
-                  to="/about"
-                  activeStyle={{ color: 'black' }}
-                >
-                    About
-                </NavLink>
-                <NavLink 
-                  to="/contact" 
-                  activeStyle={{ color: 'black' }}
-                >
-                    Contact
-                </NavLink>
-                <NavLink
-                  to="/signin"
-                  activeStyle={{ color: 'black' }}
-                >
-                    Sign In
-                </NavLink>
-                <NavBtn>
-                    <NavBtnLink to="/sign-up">Sign Up</NavBtnLink>
-                </NavBtn>
-            </NavMenu>
-           </Nav> 
-        </>
-    );
+        <NavMenu>
+          <NavLink to="/home" activeStyle={{ color: "black" }}>
+            Home
+          </NavLink>
+          <NavLink to="/api/add-user" activeStyle={{ color: "black" }}>
+            Add User
+          </NavLink>
+          <NavLink to="/api/update-user" activeStyle={{ color: "black" }}>
+            Update User
+          </NavLink>
+          <NavLink to="/api/delete-user" activeStyle={{ color: "black" }}>
+            Delete User
+          </NavLink>
+          
+          <NavBtn>
+            <NavBtnLink to="/api/browse/repository-users">
+              Browse Users
+            </NavBtnLink>
+          </NavBtn>
+        </NavMenu>
+      </Nav>
+    </>
+  );
 };
 export default Navbar;
